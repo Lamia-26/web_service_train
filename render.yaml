@@ -1,0 +1,20 @@
+services:
+  - name: cloud-app  # tiret pour dire qu'on commence le premier élément de notre tableau
+    type: web  
+    runtime: node
+    buildCommand: npm install 
+    startCommand: npm start 
+    plan: free 
+    repo: https://github.com/Lamia-26/web_service_train.git
+    region: frankfurt 
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: data_train
+          property: connectionString
+    
+databases:
+  - name: data_train
+    plan: free
+    region: frankfurt  #meme region !! 
+  
